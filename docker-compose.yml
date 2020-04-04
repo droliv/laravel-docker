@@ -21,8 +21,17 @@ services:
     build: ./.docker/nginx
     restart: always
     ports:
-      - "8080:80"
+      - "8000:80"
     volumes: 
       - ./blog/:/var/www
     depends_on:
         - web
+
+  my-app:
+    build: ./my-app
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - './my-app/:/app'
+      - '/app/node_modules'
